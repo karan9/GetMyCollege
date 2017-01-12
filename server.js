@@ -7,15 +7,18 @@ var mongoose = require('mongoose');
 //TODO: use debug
 
 // routes
-var apiIndex = require('./routes/api');
+var userRoute = require('./routes/user');
 
 // inits
 var app = express();
+
+//TODO: Error Handling!
 mongoose.connect('mongodb://localhost/testDb', function (err) {
-  if (err) {
+  if (!err) {
+    console.log("database successfully connected");
+  } else {
     console.error("error: not able to connect to database");
   }
-  console.log("database successfully connected");
 });
 
 // middleware
@@ -26,7 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // route handler
-app.use('/', apiIndex);
+app.use('/user', userRoute);
 
 // handle 404s/errors
 app.use(function (req, res, next) {

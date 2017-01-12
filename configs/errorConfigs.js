@@ -17,5 +17,5 @@ responses.messages = {
 }
 
 module.exports = {
-    responses: responses
+    response: responses
 }
